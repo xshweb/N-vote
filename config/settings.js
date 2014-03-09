@@ -15,9 +15,9 @@ Path.prototype.toString = function(){
 };
 
 var settings = {
-  title      : "随手拍网上投票",
-  host       : 'http://xsh.gxun.edu.cn/',
-  prefix     : 'xsh-rimgs-vote',
+  title      : '时间去哪儿的调查问卷',
+  host       : 'http://localhost:3000/',
+  prefix     : 'text-vote',
   path       : new Path({}),
   port       : process.env.NODE_PORT || 3000,
   root: function(){
