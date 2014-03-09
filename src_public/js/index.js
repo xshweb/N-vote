@@ -24,25 +24,24 @@ app.controller('Imgs', ['$scope', '$http', function($scope, $http) {
     });
   };
 
-  $scope.vote_count = function(id){
-  };
-
   // load picture to i-st wrap-box of images
   $scope.load = function(i){
     if (imgs_index < $scope.imgs_data.length) {
       var img = $scope.imgs_data[imgs_index++];
-      $http.get('vote_count/'+img.id).success(function(data, status){
-        img.vote_count = data;
+      $http.get('vote_count/'+img.id).success(function(count, status){
+        img.vote_count = count;
         $scope.imgs[i].push(img);
       });
     }
   };
 
-  var len = 3;
+  var len = 3, i;
   $scope.imgs = new Array(len);
-  for (var i=0; i < len; ++i) {
+  for (i=0; i < len; ++i) {
     $scope.imgs[i] = [];
     $scope.load(i);
+  }
+  for (i=0; i < len; ++i) {
     $scope.load(i);
   }
   $scope.loadMore = function(i){
