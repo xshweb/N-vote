@@ -17,7 +17,7 @@ Path.prototype.toString = function(){
 var settings = {
   title      : "随手拍网上投票",
   host       : 'http://171.107.58.160/',
-  prefix     : 'xsh-rimgs-vote/',
+  prefix     : 'xsh-rimgs-vote',
   path       : new Path({}),
   port       : process.env.NODE_PORT || 3000,
   root: function(){

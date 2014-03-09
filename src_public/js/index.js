@@ -38,11 +38,13 @@ app.controller('Imgs', ['$scope', '$http', function($scope, $http) {
     }
   };
 
-  var len = 3;
+  var len = 3, i;
   $scope.imgs = new Array(len);
-  for (var i=0; i < len; ++i) {
+  for (i=0; i < len; ++i) {
     $scope.imgs[i] = [];
     $scope.load(i);
+  }
+  for (i=0; i < len; ++i) {
     $scope.load(i);
   }
   $scope.loadMore = function(i){
