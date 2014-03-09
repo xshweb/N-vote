@@ -1,0 +1,16 @@
+extends layout
+
+block body
+  form.form-horizontal(role='form', action=url("admin/upload"), enctype='multipart/form-data', method='post')
+    .form-group
+      label.col-xs-4.col-sm-2.control-label(for='description') 图片描述
+      .col-sm-10.col-xs-8
+        input#description.form-control(type='text', name='description', placeholder='图片描述')
+    .form-group
+      label.col-xs-4.col-sm-2.control-label(for='image') 选择图片文件
+      .col-sm-10.col-xs-8
+        input#image(type='file', name='image')
+        p.help-block 选择并上传你的图片
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        button.btn.btn-primary(type='submit') 上传

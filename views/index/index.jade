@@ -1,0 +1,22 @@
+extends layout
+
+block body
+  h1= title
+  .container(ng-controller='Imgs')
+    +ul_imgs(0)
+    +ul_imgs(1)
+    +ul_imgs(2)
+  script.
+    var imgs_data = !{JSON.stringify(imgs)};
+    var imgs_index = 0;
+mixin ul_imgs (i)
+  .clearfix.pull-left.imgs-infinite(infinite-scroll='loadMore(#{i})')
+    .wrap-box
+      .img-box(id='imgs_{{img.id}}',ng-repeat='img in imgs[#{i}]')
+        img(src=url("upload", '{{img.name}}'))
+        span.title
+          a.pull-right.fancybox(href=url("upload", '{{img.name}}'),title='{{img.description}}',rel='imgs')
+            | 票数:{{img.vote_count}} 
+            +icon('zoom-in') 
+          | {{img.id}}号作品 - {{img.description}}
+        span.btn.btn-primary.img-label(ng-click='vote(img.id)') 投上一票

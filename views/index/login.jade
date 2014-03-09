@@ -1,0 +1,26 @@
+extends layout
+
+block body
+  .alert.alert-warning.alert-dismissable
+    button.close(type='button', data-dismiss='alert', aria-hidden='true') &times;
+    strong 投票前需要登陆!
+    p 请使用教务处的学号和密码登入。
+      a(href='http://ams.gxun.edu.cn/') http://ams.gxun.edu.cn/
+  if error
+    .alert.alert-danger.alert-dismissable
+      button.close(type='button', data-dismiss='alert', aria-hidden='true') &times;
+      strong 密码或帐号错误
+  form#login.center-block.form-horizontal(action="login",method="post",role='form')
+    .form-group
+      label.col-sm-2.control-label(for='usr') 学号
+      .col-sm-10
+        input#usr.form-control(type='text', name="usr", placeholder='学号')
+    .form-group
+      label.col-sm-2.control-label(for='pwd') 密码
+      .col-sm-10
+        input#pwd.form-control(type='password', name="pwd", placeholder='密码')
+    .form-group
+      .col-sm-offset-2.col-sm-4
+        button.btn.btn-default(type='submit') 登陆
+      .col-sm-offset-4.col-sm-2
+        a.btn.btn-default(href='#{root}') 返回

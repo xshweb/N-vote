@@ -1,0 +1,25 @@
+include libs
+
+doctype html
+html
+  head
+    title= title
+    +css('bootstrap/css/bootstrap.min.css')
+    +css('css/custom.css')
+    +css('fancybox/jquery.fancybox.css')
+    +js('js/jquery-1.9.1.min.js')
+    block styles
+  body
+    #top-head
+      .clearfix
+        .pull-left
+          a(href=url())= title
+        .pull-right.row(href='login')
+          a(href='http://xsh.gxun.edu.cn/ams') 相思青果
+          a(href='http://bbs.gxun.edu.cn/') 相思湖网站
+          //- a(href='https://github.com/xshweb') 关于我们
+    block gbody
+    +js('bootstrap/js/bootstrap.min.js')
+    +js('js/angular.min.js')
+    +js('fancybox/jquery.fancybox.pack.js')
+    block scripts

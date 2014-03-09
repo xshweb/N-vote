@@ -1,0 +1,7 @@
+public/upload/*
+node_modules/*
+data/*
+
+# vim
+*.swp
+*.swo

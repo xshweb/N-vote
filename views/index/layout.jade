@@ -1,0 +1,10 @@
+extends ../layout
+
+block gbody
+  .body(ng-app='app')
+    block body
+
+block scripts
+  +js('js/ng-infinite-scroll.min.js')
+  +js('js/lodash.min.js')
+  +js('js/index.min.js')

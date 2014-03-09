@@ -1,0 +1,50 @@
+div.imgs-infinite {
+  @wid-infinite: 380px;
+  width: @wid-infinite;
+  div.wrap-box {
+    @pad: 5px;
+    @wid-wrap: @wid-infinite - @pad*2;
+    padding: @pad;
+    div.img-box {
+      @pad: 4px;
+      @sub-wid: @wid-wrap - @pad*2;
+      padding: @pad;
+      margin-top: @pad * 2;
+      background-color: #4b8df8;
+      position: relative;
+      img {
+        width: @sub-wid - 2;
+        // max-height: 350px;
+      }
+      span.title {
+        display: block;
+        padding: 8px 5px;
+        width: @sub-wid;
+        color: white;
+        font-size: 18px;
+        a {
+          color: white;
+        }
+      }
+      span.img-label {
+        text-align: center;
+        position: absolute;
+        line-height: 30px;
+        font: 18px/30px "微软雅黑";
+        position: absolute;
+        left: 38%;
+        bottom: 50%;
+        margin: 0 auto;
+        transition: opacity .3s ease-in .1s;
+        opacity: 0;
+        filter:alpha(opacity=0);
+      }
+      &:hover {
+        span.img-label {
+          opacity: 1;
+          filter:alpha(opacity=100);
+        }
+      }
+    }
+  }
+}

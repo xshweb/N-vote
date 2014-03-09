@@ -1,0 +1,12 @@
+extends layout
+
+block body
+  .alert.alert-danger
+    a.fancybox(href=url('upload', img.name))
+      img.imgs(src=url('upload', img.name))
+    p= img.description
+    form.form-horizontal(role='form', action=url("admin/delete",img.id), method='post')
+      .form-group
+        label.col-xs-6.col-sm-6.control-label 确定要删除？
+        .col-xs-6.col-sm-6
+          button.btn.btn-danger(type='submit') 确定

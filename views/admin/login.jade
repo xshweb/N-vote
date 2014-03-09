@@ -1,0 +1,19 @@
+extends layout
+
+block gbody
+  if error
+    .alert.alert-danger.alert-dismissable
+      button.close(type='button', data-dismiss='alert', aria-hidden='true') &times;
+      strong 密码或帐号错误
+  form#login.center-block.form-horizontal(action="login",method="post",role='form')
+    .form-group
+      label.col-sm-2.control-label(for='usr') 管理员
+      .col-sm-10
+        input#usr.form-control(type='text', name="usr", placeholder='管理员账号')
+    .form-group
+      label.col-sm-2.control-label(for='pwd') 密码
+      .col-sm-10
+        input#pwd.form-control(type='password', name="pwd", placeholder='密码')
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        button.btn.btn-primary(type='submit') 登陆

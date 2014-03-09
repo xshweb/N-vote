@@ -1,0 +1,10 @@
+- var url = function (){
+-   return root + Array.prototype.join.call(arguments, '/');
+- }
+
+mixin css(href)
+  link(rel='stylesheet',href=url(href))
+mixin js(src)
+  script(src=url(src))
+mixin icon(name)
+  span.glyphicon(class="glyphicon-"+name)

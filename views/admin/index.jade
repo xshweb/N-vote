@@ -1,0 +1,21 @@
+extends layout
+
+block body
+  table.table.imgs-table
+    tr
+      th ID
+      th 描述
+      th 图片
+      th 操作
+    each img in imgs
+      tr
+        td= img.id
+        td= img.description
+        td
+          a.fancybox(href=url("upload",img.name))
+            img(src=url("upload",img.name))
+        td
+          a.btn.btn-warning.btn-sm(href=url('admin/edit',img.id))
+            +icon('edit')
+          a.btn.btn-danger.btn-sm(href=url('admin/delete',img.id))
+            +icon('trash')
