@@ -4,6 +4,7 @@ block body
   .alert.alert-danger
     a.fancybox(href=url('upload', img.name))
       img.imgs(src=url('upload', img.name))
+    p= img.title
     p= img.description
     form.form-horizontal(role='form', action=url("admin/delete",img.id), method='post')
       .form-group

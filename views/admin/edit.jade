@@ -4,12 +4,17 @@ block body
   .alert.alert-danger
     a.fancybox(href=url('upload', img.name))
       img.imgs(src=url('upload', img.name))
+    p= img.title
     p= img.description
   form.form-horizontal(role='form', action=url("admin/edit",img.id), method='post')
     .form-group
-      label.col-xs-4.col-sm-2.control-label(for='description') 图片描述
+      label.col-xs-4.col-sm-2.control-label(for='title') 作品标题
       .col-sm-10.col-xs-8
-        input#description.form-control(type='text', name='description', placeholder='图片描述', value='#{img.description}')
+        input#title.form-control(type='text', name='title', placeholder='作品标题', value=img.title)
+    .form-group
+      label.col-xs-4.col-sm-2.control-label(for='description') 作品描述
+      .col-sm-10.col-xs-8
+        input#description.form-control(type='text', name='description', placeholder='作品描述', value=img.description)
     .form-group
       .col-sm-offset-2.col-sm-10
         button.btn.btn-primary(type='submit') 修改

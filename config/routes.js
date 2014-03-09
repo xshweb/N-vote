@@ -25,7 +25,7 @@ module.exports = function (app) {
   app.namespace('/'+prefix, function(){
     app.get('/', controllers('index'));
     // app.get('/isLogin', controllers('index.isLoginJson'));
-    app.get('/isVote', controllers('index.isVoteJson'));
+    app.get('/voteNum', controllers('index.voteNum'));
     app.post('/vote', controllers('index.vote'));
     app.get('/vote_count/:id', controllers('index.vote_count'));
     app.get('/login', controllers('index.login'));

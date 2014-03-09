@@ -6,6 +6,7 @@ module.exports = function(db, models, next){
   });
   models.imgs = db.define("imgs", {
     id          : Number,
+    title       : String,
     description : String,
     name        : String
   });

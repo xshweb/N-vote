@@ -12,28 +12,54 @@ var handle = {
   isLogin: function(req){
     return 'stu_id' in req.session;
   },
-  isVote: function(req){
-    return req.cookies.is_vote === 1 ||
-      req.session.is_vote === 1;
+  voteNum: function(req, cb){
+    // var _ = require('lodash-node');
+    var orm = require('orm');
+    require('date-utils');
+    req.models.vote.count({
+      ip: req.ip,
+      time: orm.between(Date.today().getTime(), Date.tomorrow().getTime())
+    }, function(err, count){
+      cb(count);
+      // cb(_.max([count, req.session.voteNum, req.cookies.voteNum]));
+    });
+  },
+  voteAdd: function(req, res){
+    if (typeof req.session.voteNum == 'number') {
+      req.session ++;
+    } else {
+      req.session = 1;
+    }
+    if (typeof req.cookies.voteNum == 'number') {
+      res.cookie('voteNum', req.cookies.voteNum+1);
+    } else {
+      res.cookie('voteNum', 1);
+    }
   },
   vote: function(id, req, res){
-    if (id && !this.isVote(req)) {
-      req.models.vote.create([{
-        stu_id: '', // XXX
-        imgs_id: id,
-        ip: req.ip,
-        time: (new Date()).getTime()
-      }], function(err, items){
-        if (!err) {
-          req.session.is_vote = 1;
-          res.cookie('is_vote', 1);
-          res.json(true);
+    var self = this;
+    if (id) {
+      this.voteNum(req, function(count){
+        if (count < 10) {
+          req.models.vote.create([{
+            stu_id: '', // XXX
+            imgs_id: id,
+            ip: req.ip,
+            time: (new Date()).getTime()
+          }], function(err, items){
+            if (!err) {
+              // self.voteAdd(req, res);
+              res.json(9 - count);
+            } else {
+              res.json(0);
+            }
+          });
         } else {
-          res.json(false);
+          res.json(0);
         }
       });
     } else {
-      res.json(false);
+      res.json(0);
     }
   }
 };
@@ -55,8 +81,10 @@ module.exports = {
   login: function(req, res){
     res.render('index/login');
   },
-  isVoteJson: function(req, res){
-    res.json(handle.isVote(req));
+  voteNum: function(req, res){
+    handle.voteNum(req, function(count){
+      res.json(count);
+    });
   },
   vote: function(req, res){
     handle.vote(req.param('imgs_id'), req, res);

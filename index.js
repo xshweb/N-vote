@@ -14,7 +14,8 @@ module.exports.start = function(){
   app.use(express.cookieParser());
   app.use(express.session({
     cookie: {
-      maxAge: 3600000 * 24 * 1000
+      maxAge: 3600000
+      // * 24 * 1000
     },
     secret: 'W9ERT480F9Qp526Y1dsf3',
     store: new FileSessionStore({

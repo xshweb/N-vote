@@ -4,12 +4,14 @@ block body
   table.table.imgs-table
     tr
       th ID
+      th 标题
       th 描述
       th 图片
       th 操作
     each img in imgs
       tr
         td= img.id
+        td= img.title
         td= img.description
         td
           a.fancybox(href=url("upload",img.name))

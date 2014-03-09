@@ -1,8 +1,15 @@
 extends layout
 
 block body
-  h1= title
-  .container(ng-controller='Imgs')
+  .title
+    h1= title
+  .img-body.row(ng-controller='Imgs')
+    p.description.alert.alert-info
+      strong 主办：
+      | 广西民族大学相思湖网站
+      br
+      strong 活动详情：
+      | 网址
     +ul_imgs(0)
     +ul_imgs(1)
     +ul_imgs(2)
@@ -13,10 +20,10 @@ mixin ul_imgs (i)
   .clearfix.pull-left.imgs-infinite(infinite-scroll='loadMore(#{i})')
     .wrap-box
       .img-box(id='imgs_{{img.id}}',ng-repeat='img in imgs[#{i}]')
-        img(src=url("upload", '{{img.name}}'))
+        img.fancybox(href=url("upload", '{{img.name}}'),src=url("upload", '{{img.name}}'), title='{{img.description}}')
         span.title
-          a.pull-right.fancybox(href=url("upload", '{{img.name}}'),title='{{img.description}}',rel='imgs')
-            | 票数:{{img.vote_count}} 
-            +icon('zoom-in') 
-          | {{img.id}}号作品 - {{img.description}}
-        span.btn.btn-primary.img-label(ng-click='vote(img.id)') 投上一票
+          .pull-right(,rel='imgs')
+            | 票数:{{img.vote_count}}
+          | {{img.id}}号作品 - {{img.title}}
+        p.description {{img.description}}
+        span.btn.btn-primary.img-label(ng-click='vote(img.id, $event)') 投上一票

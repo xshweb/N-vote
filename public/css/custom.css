@@ -4,6 +4,15 @@ body {
 h1 {
   text-align: center;
 }
+.img-body {
+  width: 970px;
+  margin: auto;
+}
+.img-body p.description {
+  text-align: right;
+  padding-right: 50px;
+  font-size: 16px;
+}
 .admin {
   padding-top: 10px;
 }
@@ -44,31 +53,42 @@ table.imgs-table a.btn {
   padding: 0 20px;
 }
 div.imgs-infinite {
-  width: 380px;
+  max-width: 320px;
 }
 div.imgs-infinite div.wrap-box {
   padding: 5px;
 }
-div.imgs-infinite div.wrap-box div.img-box {
+div.imgs-infinite div.wrap-box .img-box {
   padding: 4px;
   margin-top: 8px;
   background-color: #4b8df8;
   position: relative;
+  display: block;
 }
-div.imgs-infinite div.wrap-box div.img-box img {
-  width: 362px;
+div.imgs-infinite div.wrap-box .img-box img {
+  width: 302px;
 }
-div.imgs-infinite div.wrap-box div.img-box span.title {
+div.imgs-infinite div.wrap-box .img-box img:hover {
+  cursor: pointer;
+}
+div.imgs-infinite div.wrap-box .img-box span.title {
   display: block;
   padding: 8px 5px;
-  width: 364px;
+  width: 304px;
   color: white;
-  font-size: 18px;
+  font-size: 15px;
 }
-div.imgs-infinite div.wrap-box div.img-box span.title a {
+div.imgs-infinite div.wrap-box .img-box span.title a {
   color: white;
 }
-div.imgs-infinite div.wrap-box div.img-box span.img-label {
+div.imgs-infinite div.wrap-box .img-box p.description {
+  margin: 0;
+  text-align: left;
+  word-wrap: break-word;
+  color: #CCCACA;
+  font-size: 12px;
+}
+div.imgs-infinite div.wrap-box .img-box span.img-label {
   text-align: center;
   line-height: 30px;
   font: 18px/30px "微软雅黑";
@@ -80,7 +100,7 @@ div.imgs-infinite div.wrap-box div.img-box span.img-label {
   opacity: 0;
   filter: alpha(opacity=0);
 }
-div.imgs-infinite div.wrap-box div.img-box:hover span.img-label {
+div.imgs-infinite div.wrap-box .img-box:hover span.img-label {
   opacity: 1;
   filter: alpha(opacity=100);
 }

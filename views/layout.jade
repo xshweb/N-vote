@@ -3,11 +3,22 @@ include libs
 doctype html
 html
   head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='keywords', content=title)
+    meta(name='renderer', content='webkit')
+    meta(http-equiv='X-UA-Compatible', content='IE=Edge,chrome=1')
     title= title
+    //- link(rel='shortcut icon', href='/favicon.ico')
     +css('bootstrap/css/bootstrap.min.css')
     +css('css/custom.css')
     +css('fancybox/jquery.fancybox.css')
     +js('js/jquery-1.9.1.min.js')
+    //- //if lt IE 9
+      link(href='css/ie.css', rel='stylesheet')
+    //- //if lt IE 9
+      script(src='js/libs/html5shiv.js')
+      script(src='js/libs/respond.min.js')
     block styles
   body
     #top-head

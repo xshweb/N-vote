@@ -63,9 +63,11 @@ module.exports = {
     });
     form.parse(req, function(err, fields, files) {
       var image = files.image[0];
+      console.log(fields);
       if (image.fieldName === 'image') {
         req.models.imgs.create([{
           name: path.basename(image.path),
+          title : fields.title[0],
           description : fields.description[0]
         }], function(err, items){
           if (err) {
@@ -87,6 +89,7 @@ module.exports = {
   },
   edit_post: function(req, res){
     req.models.imgs.get(req.params.id, function(err, img){
+      img.title = req.param('title');
       img.description = req.param('description');
       img.save(function(err){
         res.render('admin/edit', {
