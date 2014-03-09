@@ -63,7 +63,6 @@ module.exports = {
     });
     form.parse(req, function(err, fields, files) {
       var image = files.image[0];
-      console.log(fields);
       if (image.fieldName === 'image') {
         req.models.imgs.create([{
           name: path.basename(image.path),
