@@ -6,23 +6,23 @@ require('express-namespace');
 
 module.exports = function (app) {
   app.set("trust proxy", true);
-  var pathPrefix = '/xsh-rimgs-vote';
+  var prefix = settings.prefix;
   /* add jump method to res. redirect to real address. */
   app.use(function (req, res, next) {
     res.jump = function(/* status ,*/ url){
       if (typeof arguments[0] === 'number') {
         res.redirect(arguments[0],
-          pathPrefix + '/' + arguments[1]);
+          prefix + '/' + arguments[1]);
       } else {
-        res.redirect(pathPrefix + '/' + url);
+        res.redirect(prefix + '/' + url);
       }
     };
     next();
   });
   // set static directory
-  app.use(pathPrefix, express.static(settings.path.public));
+  app.use('/'+prefix, express.static(settings.path.public));
 
-  app.namespace(pathPrefix, function(){
+  app.namespace('/'+prefix, function(){
     app.get('/', controllers('index'));
     // app.get('/isLogin', controllers('index.isLoginJson'));
     app.get('/isVote', controllers('index.isVoteJson'));
