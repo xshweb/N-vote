@@ -12,10 +12,10 @@ module.exports = function(grunt){
       }
     },
     less: {
-			development: {
-				options: {
-					yuicompress: true
-				},
+      development: {
+        options: {
+          yuicompress: true
+        },
         files: {
           'public/css/custom.css': 'src_public/less/custom.less'
         }
@@ -52,8 +52,8 @@ module.exports = function(grunt){
   // plugin
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-less');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-nodemon');
 
   // 默认任务
   grunt.registerTask('default', ['nodemon']);
