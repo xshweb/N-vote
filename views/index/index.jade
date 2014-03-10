@@ -26,4 +26,4 @@ mixin ul_imgs (i)
             | 票数:{{img.vote_count}}
           | {{img.id}}号作品 - {{img.title}}
         p.description {{img.description}}
-        span.btn.btn-primary.img-label(ng-click='vote(img.id, $event)') 投上一票
+        span.btn.btn-primary.img-label(ng-click='vote(img, img.id, $event)') 投上一票

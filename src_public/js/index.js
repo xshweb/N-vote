@@ -5,7 +5,7 @@ app.controller('Imgs', ['$scope', '$http', function($scope, $http) {
   $scope.imgs_data = window.imgs_data;
 
   // post vote
-  $scope.vote = function(id, $event){
+  $scope.vote = function(img, id, $event){
     $http.get('voteNum').success(function(data, status) {
       if (data >= 10) {
         alert('你今天不能再投票');
@@ -15,7 +15,7 @@ app.controller('Imgs', ['$scope', '$http', function($scope, $http) {
         }).success(function(data, status){
           if (data !== '0') {
             alert('投票成功, 还有' + data + '次机会');
-            location.reload(); // XXX
+            img.vote_count ++;
           } else {
             alert('投票失败');
           }
@@ -30,7 +30,7 @@ app.controller('Imgs', ['$scope', '$http', function($scope, $http) {
     if (imgs_index < $scope.imgs_data.length) {
       var img = $scope.imgs_data[imgs_index++];
       $http.get('vote_count/'+img.id).success(function(count, status){
-        img.vote_count = count;
+        img.vote_count = Number(count);
         $scope.imgs[i].push(img);
       });
     }
