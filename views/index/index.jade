@@ -5,7 +5,7 @@ block body
   .container.body(ng-controller='Imgs')
     p.alert.alert-info.
       亲爱的童鞋们，知道你们的时间到哪去了么？请你们按照自己的实际情况和真实想法来填写这份调查问卷。
-    form.form
+    form.form(action=url(),method='post')
 
       .form-group
         h4 1.您的性别：
@@ -17,6 +17,7 @@ block body
           label
             input(type='radio',name='f0')
             | 女
+
 
       .form-group
         h4 2.除上课外，您一般花多少时间来学习？
@@ -36,6 +37,7 @@ block body
           label
             input(type='radio',name='f1')
             | 从来不自主学习
+
       .form-group
         h4 3.您一般在哪个地方学习
         .radio.col-xs-offset-1
@@ -54,6 +56,8 @@ block body
           label
             input(type='radio',name='f2')
             | 宿舍
+
+
       .form-group
         h4 4.您一周去几次自习室
         .radio.col-xs-offset-1
@@ -72,6 +76,7 @@ block body
           label
             input(type='radio',name='f3')
             | 从不去自习室
+
       .form-group
         h4 5.您平时经常去图书馆看书
         .radio.col-xs-offset-1
@@ -86,6 +91,8 @@ block body
           label
             input(type='radio',name='f4')
             | 从来不去
+
+
       .form-group
         h4 6.您一天花多少时间上网？
         .radio.col-xs-offset-1
@@ -100,6 +107,7 @@ block body
           label
             input(type='radio',name='f5')
             | 4小时以上
+
       .form-group
         h4 7.您上网时，一般做的最多的事情是什么
         .radio.col-xs-offset-1
@@ -114,6 +122,8 @@ block body
           label
             input(type='radio',name='f6')
             | 玩游戏
+
+
       .form-group
         h4 8.您一天花多少时间来进行体育锻炼
         .radio.col-xs-offset-1
@@ -128,6 +138,7 @@ block body
           label
             input(type='radio',name='f7')
             | 2小时以上
+
       .form-group
         h4 9.您参加社团活动吗？
         .radio.col-xs-offset-1
@@ -142,6 +153,8 @@ block body
           label
             input(type='radio',name='f8')
             | 从不
+
+
       .form-group
         h4 10.您每个学期做几次兼职
         .radio.col-xs-offset-1
@@ -156,6 +169,7 @@ block body
           label
             input(type='radio',name='f9')
             | 6次以上
+
       .form-group
         h4 11.您做兼职的时间是多长
         .radio.col-xs-offset-1
@@ -174,6 +188,10 @@ block body
           label
             input(type='radio',name='f10')
             | 一个学期
+
+
+      .form-group
+        button.btn.btn-primary(type='submit') 确认提交
   script.
     var imgs_data = !{JSON.stringify(imgs)};
     var imgs_index = 0;
