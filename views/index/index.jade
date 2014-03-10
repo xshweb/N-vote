@@ -4,12 +4,13 @@ block body
   .title
     h1= title
   .img-body.row(ng-controller='Imgs')
-    p.description.alert.alert-info
-      strong 主办：
-      | 广西民族大学相思湖网站
-      br
-      strong 活动详情：
-      | 网址
+    p.description.alert.alert-info.row
+      span.col-xs-6
+        strong 主办：
+        | 广西民族大学相思湖网站
+      span.col-xs-6
+        strong 活动详情：
+        | 网址
     +ul_imgs(0)
     +ul_imgs(1)
     +ul_imgs(2)

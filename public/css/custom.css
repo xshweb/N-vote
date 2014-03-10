@@ -9,8 +9,6 @@ h1 {
   margin: auto;
 }
 .img-body p.description {
-  text-align: right;
-  padding-right: 50px;
   font-size: 16px;
 }
 .admin {
