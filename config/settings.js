@@ -23,9 +23,6 @@ var settings = {
   root: function(){
     return this.host + this.prefix;
   },
-  url: function(u){
-    return this.root() + u;
-  },
   init: function(app){
     app.set('view engine', 'jade');
     app.locals.title = this.title;
