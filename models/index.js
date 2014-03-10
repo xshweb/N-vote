@@ -3,11 +3,15 @@ module.exports = function(db, models, next){
     id  : Number,
     usr : String,
     pwd : String
+  }, {
+    cache: false
   });
   models.imgs = db.define("imgs", {
     id          : Number,
     description : String,
     name        : String
+  }, {
+    cache: false
   });
   models.vote = db.define("vote", {
     id      : Number,
@@ -15,6 +19,8 @@ module.exports = function(db, models, next){
     imgs_id : Number,
     ip      : String,
     time    : Date
+  }, {
+    cache: false
   });
   models.vote.hasOne('imgs', models.imgs, {reverse: 'votes'});
   next();
