@@ -4,7 +4,7 @@ block body
   .title
     h1= title
   .img-body.row(ng-controller='Imgs')
-    div.description.alert.alert-info
+    div.alert.alert-success
       p.row
         span.col-xs-4
           strong 主办：
@@ -15,6 +15,7 @@ block body
         span.col-xs-4
           strong 媒体支持：
           a(href='http://xsh.gxun.edu.cn/') 广西民族大学相思湖网站
+    div.alert.alert-info
       p
         strong 一、刊登初选作品
       p
@@ -22,7 +23,7 @@ block body
       p
         strong 二、投票方式
       p
-        span 投票采取IP限制，每个IP地址每天限投1次，可投一票或多票；
+        span 投票采取IP限制，每个IP地址每天限投10次，可投一票或多票；
       p
         strong 三、投票时间
       p
