@@ -4,13 +4,33 @@ block body
   .title
     h1= title
   .img-body.row(ng-controller='Imgs')
-    p.description.alert.alert-info.row
+    div.description.alert.alert-info.row
       span.col-xs-6
         strong 主办：
-        | 广西民族大学相思湖网站
+        | 广西民族大学党委宣传部
       span.col-xs-6
-        strong 活动详情：
-        | 网址
+        strong 承办：
+        a(href='http://xsh.guxn.edu.cn/') 广西民族大学相思湖网站
+      p
+        strong 一、刊登初选作品
+      p
+        span 首届随手拍大赛网上投票系统将刊登通过初选的参赛作品（按投稿时间先后进行编号排列）；
+      p
+        strong 二、投票方式
+      p
+        span 投票采取IP限制，每个IP地址每天限投10票，投票占总分比例30%；
+      p
+        strong 三、投票时间
+      p
+        span 2014年3月12日——5月8日24时止；
+      p
+        strong 四、奖项设置：
+      p
+        ul
+          li 一等奖1名，各200元及获奖证书。
+          li 二等奖2名，各150元及获奖证书。
+          li 三等奖3名，各100元及获奖证书。
+          li 最佳人气奖1名，最佳创意奖1名，最佳组织奖3
     +ul_imgs(0)
     +ul_imgs(1)
     +ul_imgs(2)
