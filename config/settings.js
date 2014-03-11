@@ -15,7 +15,7 @@ Path.prototype.toString = function(){
 };
 
 var settings = {
-  title      : "广西民族大学首届随手拍大赛 网上投票",
+  title      : "2013年－－2014年广西民族大学新闻摄影大赛",
   host       : 'http://localhost:3000/',
   prefix     : 'pic-vote',
   path       : new Path({}),

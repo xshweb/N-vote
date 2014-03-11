@@ -4,13 +4,29 @@ block body
   .title
     h1= title
   .img-body.row(ng-controller='Imgs')
-    p.description.alert.alert-info.row
-      span.col-xs-6
-        strong 主办：
-        | 广西民族大学相思湖网站
-      span.col-xs-6
-        strong 活动详情：
-        | 网址
+    div.description.alert.alert-info
+      p.row
+        span.col-xs-4
+          strong 主办：
+          | 广西民族大学党委宣传部
+        span.col-xs-4
+          strong 承办：
+          | 广西民族大学党委宣传部
+        span.col-xs-4
+          strong 媒体支持：
+          a(href='http://xsh.gxun.edu.cn/') 广西民族大学相思湖网站
+      p
+        strong 一、刊登初选作品
+      p
+        span 新闻摄影大赛网上投票系统将刊登通过初选的参赛作品（按投稿时间先后进行编号排列）；
+      p
+        strong 二、投票方式
+      p
+        span 投票采取IP限制，每个IP地址每天限投1次，可投一票或多票；
+      p
+        strong 三、投票时间
+      p
+        span 2014年3月17日—4月11日18时止；
     +ul_imgs(0)
     +ul_imgs(1)
     +ul_imgs(2)
