@@ -1,13 +1,18 @@
 var express = require('express');
-var path = require('./config/settings').path;
 var crypto = require('crypto');
 var orm = require('orm');
+var path = require('path');
 
-module.exports = {
+var utils = {
+  path: function(){
+    var args = Array.prototype.slice.call(arguments);
+    args.unshift(__dirname);
+    return path.join.apply(Function, args);
+  },
   controllers: function(name){
     var names = name.split('.');
     var ctrl = require(
-      path.controllers+(names[0] || 'index'));
+      utils.path('controllers', (names[0] || 'index')));
     var method = names[1] || 'index';
     return ctrl[method];
   },
@@ -22,7 +27,7 @@ module.exports = {
   },
   models: function(app){
     app.use(orm.express("sqlite:data/data.db", {
-      define: require(path.models+'index')
+      define: require('./models/index')
     }));
   },
   md5: function(text){
@@ -30,3 +35,4 @@ module.exports = {
   }
 };
 
+module.exports = utils;
