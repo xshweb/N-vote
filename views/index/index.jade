@@ -1,197 +1,43 @@
 extends layout
 
+mixin form-group-list(data)
+  each da,i in data
+    .form-group
+      h4 1.#{da['title']}
+      +l-radio(da['radios'], 'f'+i)
+
+mixin l-radio(arr, name)
+  .row.l-radio
+    each n,i in arr
+      label
+        input(type='radio',name=name,value=i)
+        != n
+
+
 block body
   h1= title
   .container.body(ng-controller='Imgs')
+    if error
+      .alert.alert-warning.alert-dismissable
+        button.close(type='button', data-dismiss='alert', aria-hidden='true') &times;
+        strong= error
+
     p.alert.alert-info.
       亲爱的童鞋们，知道你们的时间到哪去了么？请你们按照自己的实际情况和真实想法来填写这份调查问卷。
-    form.form(action=url(),method='post')
+    form.form.text-vote(action=url(),method='post')
+      +form-group-list(data)
+
+      .form-group.row
+        .col-xs-3.form-control-static
+          img(src=url('verifycode'))
+        .col-xs-9.form-horizontal
+          .form-group
+            label.col-xs-3.control-label 验证码
+            .col-xs-9
+              input.form-control(type='text',name='verifycode')
 
       .form-group
-        h4 1.您的性别：
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f0')
-            | 男
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f0')
-            | 女
-
-
-      .form-group
-        h4 2.除上课外，您一般花多少时间来学习？
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f1')
-            | 一小时一下
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f1')
-            | 一小时至三小时
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f1')
-            | 三小时以上
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f1')
-            | 从来不自主学习
-
-      .form-group
-        h4 3.您一般在哪个地方学习
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f2')
-            | 自习室
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f2')
-            | 图书馆
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f2')
-            | 教室
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f2')
-            | 宿舍
-
-
-      .form-group
-        h4 4.您一周去几次自习室
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f3')
-            | 1到2次
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f3')
-            | 3到4次
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f3')
-            | 4次以上
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f3')
-            | 从不去自习室
-
-      .form-group
-        h4 5.您平时经常去图书馆看书
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f4')
-            | 经常
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f4')
-            | 偶尔
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f4')
-            | 从来不去
-
-
-      .form-group
-        h4 6.您一天花多少时间上网？
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f5')
-            | 2小时以下
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f5')
-            | 2小时到4小时
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f5')
-            | 4小时以上
-
-      .form-group
-        h4 7.您上网时，一般做的最多的事情是什么
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f6')
-            | 聊天
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f6')
-            | 看电影
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f6')
-            | 玩游戏
-
-
-      .form-group
-        h4 8.您一天花多少时间来进行体育锻炼
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f7')
-            | 1小时一下
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f7')
-            | 1到2小时
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f7')
-            | 2小时以上
-
-      .form-group
-        h4 9.您参加社团活动吗？
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f8')
-            | 偶尔
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f8')
-            | 经常
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f8')
-            | 从不
-
-
-      .form-group
-        h4 10.您每个学期做几次兼职
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f9')
-            | 3次以下
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f9')
-            | 3到6次
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f9')
-            | 6次以上
-
-      .form-group
-        h4 11.您做兼职的时间是多长
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f10')
-            | 一周以下
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f10')
-            | 一周或一个月
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f10')
-            | 几个月
-        .radio.col-xs-offset-1
-          label
-            input(type='radio',name='f10')
-            | 一个学期
-
-
-      .form-group
-        button.btn.btn-primary(type='submit') 确认提交
+        button.btn.btn-danger(type='submit') 确认提交
   script.
     var imgs_data = !{JSON.stringify(imgs)};
     var imgs_index = 0;

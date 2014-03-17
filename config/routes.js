@@ -26,11 +26,12 @@ module.exports = function (app) {
 
   app.namespace('/'+prefix, function(){
     app.get('/', controllers('index'));
-    // app.get('/isLogin', controllers('index.isLoginJson'));
-    app.get('/isVote', controllers('index.isVoteJson'));
-    app.post('/vote', controllers('index.vote'));
-    app.get('/vote_count/:id', controllers('index.vote_count'));
-    app.get('/login', controllers('index.login'));
+    app.post('/', controllers('index.index_post'));
+    app.get('/verifycode', controllers('index.verifycode'));
+    app.get('/success', utils.views('index/success'));
+
+    // app.get('/isVote', controllers('index.isVoteJson'));
+    // app.post('/vote', controllers('index.vote'));
 
     var is_admin = controllers('admin.isAdmin');
     app.namespace('/admin', function(){
@@ -38,15 +39,15 @@ module.exports = function (app) {
       app.post('/login', controllers('admin.login_post'));
 
       app.get('/', is_admin, controllers('admin'));
-      app.get('/index/:offset?', is_admin, controllers('admin'));
-      app.get('/upload', is_admin, controllers('admin.upload'));
-      app.post('/upload', is_admin, controllers('admin.upload_post'));
-      app.get('/edit/:id', is_admin, controllers('admin.edit'));
-      app.post('/edit/:id', is_admin, controllers('admin.edit_post'));
-      app.get('/delete/:id', is_admin, controllers('admin.delete'));
-      app.post('/delete/:id', is_admin, controllers('admin.delete_post'));
-      app.get('/password/:msg?', is_admin, controllers('admin.password'));
-      app.post('/password', is_admin, controllers('admin.password_post'));
+      // app.get('/index/:offset?', is_admin, controllers('admin'));
+      // app.get('/upload', is_admin, controllers('admin.upload'));
+      // app.post('/upload', is_admin, controllers('admin.upload_post'));
+      // app.get('/edit/:id', is_admin, controllers('admin.edit'));
+      // app.post('/edit/:id', is_admin, controllers('admin.edit_post'));
+      // app.get('/delete/:id', is_admin, controllers('admin.delete'));
+      // app.post('/delete/:id', is_admin, controllers('admin.delete_post'));
+      // app.get('/password/:msg?', is_admin, controllers('admin.password'));
+      // app.post('/password', is_admin, controllers('admin.password_post'));
     });
   });
   app.get('*', utils.views('404'));

@@ -1,0 +1,40 @@
+.multi-brower(@name; @values){
+  @{name}: @values;
+  -webkit-@{name}: @values;
+  -moz-@{name}: @values;
+  -ms-@{name}: @values;
+  -o-@{name}: @values;
+}
+
+.border-radius(...) {
+  .multi-brower(border-radius; @arguments);
+}
+.box-shadow(...) {
+  .multi-brower(box-shadow; @arguments);
+}
+
+.animation(...) {
+  .multi-brower(animation; @arguments);
+}
+
+.filter(...) {
+  .multi-brower(filter; @arguments);
+}
+
+.keyframes(@name; @frames) {
+  @-moz-keyframes @name {
+    @frames();
+  }
+  @-webkit-keyframes @name {
+    @frames();
+  }
+  @-o-keyframes @name {
+    @frames();
+  }
+  @-ms-keyframes @name {
+    @frames();
+  }
+  @keyframes @name {
+    @frames();
+  }
+}

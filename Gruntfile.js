@@ -14,7 +14,7 @@ module.exports = function(grunt){
     less: {
       development: {
         options: {
-          yuicompress: true
+          compress: true
         },
         files: {
           'public/css/custom.css': 'src_public/less/custom.less'

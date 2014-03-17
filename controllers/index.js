@@ -35,25 +35,45 @@ var handle = {
     } else {
       res.json(false);
     }
+  },
+  is_verifycode: function(req){
+    return req.session.verifycode == req.param('verifycode');
   }
 };
 
 module.exports = {
   index: function(req, res) {
-    // XXX
-    // if have 1000 picture, loading process is crazy!
-    req.models.imgs.find({},
-      { limit: 1000 }, ['id', 'Z'],
-      function(err, imgs){
-      if (!err) {
-        res.render('index/index', { imgs: imgs });
-      } else {
-        res.render('404');
-      }
+    res.render('index/index', {
+      data: require('./index/data.js')
     });
   },
-  login: function(req, res){
-    res.render('index/login');
+  index_post: function(req, res){
+    var error = function(info){
+      res.render('index/index', {
+        'error': info
+      });
+    };
+    if (!handle.is_verifycode(req)) {
+      return error('验证码错误');
+    } else {
+      // XXX move to handle
+      var v = {};
+      for (var i=0; i < 11; ++i) {
+        console.log(req.param('f'+i));
+        if (req.param('f'+i)) {
+          v['f'+i] = parseInt(req.param('f'+i));
+        } else {
+          return error('第'+(i+1)+'个选项未填写');
+        }
+      }
+      v.ip = req.ip;
+      v.time = (new Date()).getTime();
+      req.models.vote.create([v], function(err, items){
+        if (!err) {
+          res.jump('success');
+        }
+      });
+    }
   },
   isVoteJson: function(req, res){
     res.json(handle.isVote(req));
@@ -61,14 +81,14 @@ module.exports = {
   vote: function(req, res){
     handle.vote(req.param('imgs_id'), req, res);
   },
-  vote_count: function(req, res){
-    req.models.vote.count({'imgs_id': req.params.id}, function(err, count){
-      res.json(count);
+  verifycode: function(req, res){
+    var utils = require('../utils');
+    utils.verifycode(function(err, code, buf){
+      if (!err) {
+        req.session.verifycode = code;
+        res.writeHead(200, { 'Content-Type': 'image/png', 'Content-Length': buf.length });
+        res.end(buf);
+      }
     });
-  },
-  login_post: function(req, res){
-  },
-  isLoginJson: function(req, res){
-    res.json(handle.isLogin(req));
   },
 };
