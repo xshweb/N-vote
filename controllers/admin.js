@@ -15,7 +15,7 @@ module.exports = {
   // 分页功能
   index: function(req, res){
     var offset = req.params.offset || 0;
-    req.models.imgs.find({},
+    req.models.vote.find({},
       { offset: offset, limit: 1000 }, ['id', 'Z'],
       function(err, imgs){
       if (!err) {

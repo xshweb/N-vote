@@ -3,14 +3,14 @@ extends layout
 mixin form-group-list(data)
   each da,i in data
     .form-group
-      h4 1.#{da['title']}
+      h4 #{i+1}.#{da['title']}
       +l-radio(da['radios'], 'f'+i)
 
 mixin l-radio(arr, name)
   .row.l-radio
     each n,i in arr
       label
-        input(type='radio',name=name,value=i)
+        input(type='radio',name=name,value=i,required=true)
         != n
 
 
@@ -34,7 +34,7 @@ block body
           .form-group
             label.col-xs-3.control-label 验证码
             .col-xs-9
-              input.form-control(type='text',name='verifycode')
+              input.form-control(type='text',name='verifycode',required=true)
 
       .form-group
         button.btn.btn-danger(type='submit') 确认提交

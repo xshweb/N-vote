@@ -50,7 +50,8 @@ module.exports = {
   index_post: function(req, res){
     var error = function(info){
       res.render('index/index', {
-        'error': info
+        data: require('./index/data.js'),
+        error: info
       });
     };
     if (!handle.is_verifycode(req)) {
@@ -59,7 +60,6 @@ module.exports = {
       // XXX move to handle
       var v = {};
       for (var i=0; i < 11; ++i) {
-        console.log(req.param('f'+i));
         if (req.param('f'+i)) {
           v['f'+i] = parseInt(req.param('f'+i));
         } else {
