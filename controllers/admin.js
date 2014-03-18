@@ -15,11 +15,12 @@ module.exports = {
   // 分页功能
   index: function(req, res){
     var offset = req.params.offset || 0;
-    req.models.vote.find({},
-      { offset: offset, limit: 1000 }, ['id', 'Z'],
-      function(err, imgs){
+    req.models.vote.find(function(err, votes){
       if (!err) {
-        res.render('admin/index', { imgs: imgs });
+        res.render('admin/index', {
+          data: require('./index/data.js'),
+          votes: votes
+        });
       } else {
         res.render('404');
       }

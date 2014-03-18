@@ -4,11 +4,11 @@ block styles
   +css('bootstrap/css/bootstrap-theme.min.css')
 
 block gbody
-  .btn-group.btn-group.menu
+  //- .btn-group.btn-group.menu
     a.btn.btn-warning(href=url("admin/upload")) 上传图片
     a.btn.btn-primary(href=url("admin/index")) 管理图片
     a.btn.btn-danger(href=url("admin/password")) 修改密码
-  .container.admin
+  .container.admin(ng-app)
     block body
 block scripts
   script.

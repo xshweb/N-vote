@@ -1,21 +1,44 @@
 extends layout
 
 block body
-  table.table.imgs-table
+  table.table.imgs-table(ng-controller='show_vote')
     tr
       th ID
-      th 描述
-      th 图片
-      th 操作
-    each img in imgs
+      th 问题
+      th A
+      th 票数
+      th B
+      th 票数
+      th C
+      th 票数
+      th D
+      th 票数
+    each da,i in data
       tr
-        td= img.id
-        td= img.description
-        td
-          a.fancybox(href=url("upload",img.name))
-            img(src=url("upload",img.name))
-        td
-          a.btn.btn-warning.btn-sm(href=url('admin/edit',img.id))
-            +icon('edit')
-          a.btn.btn-danger.btn-sm(href=url('admin/delete',img.id))
-            +icon('trash')
+        td= i+1
+        td= da.title
+        td= da.radios[0]
+        td {{votes[#{i}][0]}}
+        td= da.radios[1]
+        td {{votes[#{i}][1]}}
+        td= da.radios[2]
+        td {{votes[#{i}][2]}}
+        td= da.radios[3]
+        td {{votes[#{i}][3]}}
+  script.
+    var votes = !{JSON.stringify(votes)};
+    function show_vote($scope) {
+      $scope.votes = new Array(11);
+      var i, j;
+      for (i=0; i < 11; ++i) {
+        $scope.votes[i] = new Array(4);
+        for (j=0; j < 4; ++j) {
+          $scope.votes[i][j] = 0;
+        }
+      }
+      for (i=0; i < votes.length; ++i) {
+        for (j=0; j < 11; ++j) {
+          $scope.votes[j][votes[i]['f'+j]]++;
+        }
+      }
+    }
