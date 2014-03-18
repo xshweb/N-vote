@@ -14,22 +14,29 @@ var handle = {
         // return error('第'+(i+1)+'个选项未填写');
       }
     }
-    'bcde'.split().forEach(function(e){
+    'bcde'.split('').forEach(function(e){
       for (i=0; i < 5; ++i) {
         if (req.param(e+i)) {
           v[e+i] = parseInt(req.param(e+i));
         } else {
-          error.push('a'+i);
+          error.push(e+i);
           // return error('第'+(i+1)+'个选项未填写');
         }
       }
     });
-    if (error === []) {
+    if (error.length === 0) {
+      v.at = req.param('at');
+      v.bt = req.param('bt');
+      v.ct = req.param('ct');
+      v.dt = req.param('dt');
+      v.et = req.param('et');
       v.ip = req.ip;
       v.time = (new Date()).getTime();
       req.models.vote.create([v], function(err, items){
         if (!err) {
           res.jump('success');
+        } else {
+          console.log(err); // XXX
         }
       });
     } else {

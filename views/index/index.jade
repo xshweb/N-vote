@@ -17,10 +17,15 @@ mixin l-radio(arr, name)
 block body
   h1= title
   .container.body(ng-controller='Imgs')
-    if typeof error === 'string'
-      .alert.alert-warning.alert-dismissable
-        button.close(type='button', data-dismiss='alert', aria-hidden='true') &times;
-        strong= error
+    if error
+      if typeof error === 'string'
+        .alert.alert-warning.alert-dismissable
+          button.close(type='button', data-dismiss='alert', aria-hidden='true') &times;
+          strong= error
+      else
+        .alert.alert-warning.alert-dismissable
+          button.close(type='button', data-dismiss='alert', aria-hidden='true') &times;
+          strong!= JSON.stringify(error)
 
     p.alert.alert-info.
       为进一步强化服务意识，全面提升后勤服务质量和管理水平,为师生员工提供优质高效、周到便捷的后勤服务，现向全校师生员工征求对后勤实体（饮食服务中心、物业服务中心、学生公寓园区管理办公室、水电与维修服务中心、交通服务中心）管理服务工作意见，请您在百忙中对我校后勤服务工作提出宝贵意见和建议。我们将综合大家的意见和建议研究制定整改措施，以便不断改进后勤服务工作。本次调查活动截止时间为2014年3月20日，感谢您的支持和配合！
