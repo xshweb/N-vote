@@ -10,14 +10,15 @@ mixin l-radio(arr, name)
   .row.l-radio
     each n,i in arr
       label
-        input(type='radio',name=name,value=i,required=true)
+        //- input(type='radio',name=name,value=i,required=true)
+        input(type='radio',name=name,value=i)
         != n
 
 
 block body
   h1= title
   .container.body(ng-controller='Imgs')
-    if error
+    if typeof error === 'string'
       .alert.alert-warning.alert-dismissable
         button.close(type='button', data-dismiss='alert', aria-hidden='true') &times;
         strong= error
@@ -28,26 +29,44 @@ block body
       h3 一、请您对饮食管理服务工作做出评价
       +form-group-list(data[0], 'a')
       .form-group
-        h4 #{data[0].length+1}.XXX
+        h4 #{data[0].length+1}.您对饮食管理服务还有何意见及建议？
         .row
-          textarea(name='at', cols='30', rows='10')
+          textarea(name='at', cols='50', rows='3')
       h3 二、请您对物业管理服务工作做出评价
       +form-group-list(data[1], 'b')
+      .form-group
+        h4 #{data[1].length+1}.您对教室管理服务还有何意见及建议？
+        .row
+          textarea(name='bt', cols='50', rows='3')
       h3 三、请您对学生公寓管理服务工作做出评价
       +form-group-list(data[2], 'c')
+      .form-group
+        h4 #{data[2].length+1}.您对学生公寓管理服务还有何意见及建议？
+        .row
+          textarea(name='ct', cols='50', rows='3')
       h3 四、请你对水电与维修管理服务工作做出评价
       +form-group-list(data[3], 'd')
+      .form-group
+        h4 #{data[3].length+1}.您对水电服务工作还有何意见及建议：
+        .row
+          textarea(name='dt', cols='50', rows='3')
       h3 五、请您对交通管理服务工作做出评价
       +form-group-list(data[4], 'e')
+      .form-group
+        h4 #{data[4].length+1}.您对交通管理服务工作还有何意见及建议：
+        .row
+          textarea(name='et', cols='50', rows='3')
 
-      .form-group.row
-        .col-xs-3.form-control-static
-          img(src=url('verifycode'))
-        .col-xs-9.form-horizontal
-          .form-group
-            label.col-xs-3.control-label 验证码
-            .col-xs-9
-              input.form-control(type='text',name='verifycode',required=true)
+      .form-group
+        .row
+          .col-xs-3.form-control-static
+            img(src=url('verifycode'))
+          .col-xs-9.form-horizontal
+            .form-group
+              label.col-xs-3.control-label 验证码
+              .col-xs-9
+                //- input.form-control(type='text',name='verifycode',required=true)
+                input.form-control(type='text',name='verifycode')
 
       .form-group
         button.btn.btn-danger(type='submit') 确认提交

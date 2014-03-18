@@ -1,5 +1,4 @@
 var express = require('express');
-// var proxy = require('kingo');
 var colors = require('colors');
 var routes = require('./config/routes');
 var settings = require('./config/settings');
@@ -8,7 +7,6 @@ var FileSessionStore = require('connect-session-file');
 
 module.exports.start = function(){
   var app = express();
-  // var kingo = new proxy({'baseUrl': 'http://ams.gxun.edu.cn'});
 
   app.use(express.urlencoded());
   app.use(express.cookieParser());

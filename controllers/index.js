@@ -5,21 +5,39 @@ var handle = {
       // req.session.is_vote === 1;
   },
   vote: function(req, res){
-    var v = {};
-    for (var i=0; i < 11; ++i) {
-      if (req.param('f'+i)) {
-        v['f'+i] = parseInt(req.param('f'+i));
+    var v = {}, i, error = [];
+    for (i=0; i < 6; ++i) {
+      if (req.param('a'+i)) {
+        v['a'+i] = parseInt(req.param('a'+i));
       } else {
-        return error('第'+(i+1)+'个选项未填写');
+        error.push('a'+i);
+        // return error('第'+(i+1)+'个选项未填写');
       }
     }
-    v.ip = req.ip;
-    v.time = (new Date()).getTime();
-    req.models.vote.create([v], function(err, items){
-      if (!err) {
-        res.jump('success');
+    'bcde'.split().forEach(function(e){
+      for (i=0; i < 5; ++i) {
+        if (req.param(e+i)) {
+          v[e+i] = parseInt(req.param(e+i));
+        } else {
+          error.push('a'+i);
+          // return error('第'+(i+1)+'个选项未填写');
+        }
       }
     });
+    if (error === []) {
+      v.ip = req.ip;
+      v.time = (new Date()).getTime();
+      req.models.vote.create([v], function(err, items){
+        if (!err) {
+          res.jump('success');
+        }
+      });
+    } else {
+      res.render('index/index', {
+        data: require('./index/data.js'),
+        error: error
+      });
+    }
   },
   is_verifycode: function(req){
     return req.session.verifycode == req.param('verifycode');

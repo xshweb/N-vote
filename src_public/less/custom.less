@@ -37,28 +37,34 @@ body {
 }
 
 .text-vote {
-  .row.l-radio {
+  .row {
     padding-left: 10px;
-    label {
-      min-width: 100px;
-      margin: 10px;
-      padding: 2px 10px;
+    textarea {
+      margin-left: 10px;
+    }
+    &.l-radio {
+      padding-left: 10px;
+      label {
+        min-width: 100px;
+        margin: 10px;
+        padding: 2px 10px;
 
-      color: #FFF;
-      background-color: @blue;
+        color: #FFF;
+        background-color: @blue;
 
-      float: left;
-      cursor: pointer;
+        float: left;
+        cursor: pointer;
 
-      .border-radius(4px);
-      .box-shadow(0px 0px 10px 0px #4856EA inset);
+        .border-radius(4px);
+        .box-shadow(0px 0px 10px 0px #4856EA inset);
 
-      &:active {
-        .animation(focuser 0.2s);
-      }
+        &:active {
+          .animation(focuser 0.2s);
+        }
 
-      input {
-        margin-right: 10px;
+        input {
+          margin-right: 10px;
+        }
       }
     }
   }
