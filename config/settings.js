@@ -1,5 +1,5 @@
 var settings = {
-  title      : '时间去哪儿的调查问卷',
+  title      : '广西民族大学后勤服务满意度问卷调查',
   host       : 'http://localhost:3000',
   prefix     : 'text-vote',
   port       : process.env.NODE_PORT || 3000,

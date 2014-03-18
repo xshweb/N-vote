@@ -1,10 +1,10 @@
 extends layout
 
-mixin form-group-list(data)
+mixin form-group-list(data, name)
   each da,i in data
     .form-group
       h4 #{i+1}.#{da['title']}
-      +l-radio(da['radios'], 'f'+i)
+      +l-radio(da['radios'], name+i)
 
 mixin l-radio(arr, name)
   .row.l-radio
@@ -23,9 +23,22 @@ block body
         strong= error
 
     p.alert.alert-info.
-      亲爱的童鞋们，知道你们的时间到哪去了么？请你们按照自己的实际情况和真实想法来填写这份调查问卷。
+      为进一步强化服务意识，全面提升后勤服务质量和管理水平,为师生员工提供优质高效、周到便捷的后勤服务，现向全校师生员工征求对后勤实体（饮食服务中心、物业服务中心、学生公寓园区管理办公室、水电与维修服务中心、交通服务中心）管理服务工作意见，请您在百忙中对我校后勤服务工作提出宝贵意见和建议。我们将综合大家的意见和建议研究制定整改措施，以便不断改进后勤服务工作。本次调查活动截止时间为2014年3月20日，感谢您的支持和配合！
     form.form.text-vote(action=url(),method='post')
-      +form-group-list(data)
+      h3 一、请您对饮食管理服务工作做出评价
+      +form-group-list(data[0], 'a')
+      .form-group
+        h4 #{data[0].length+1}.XXX
+        .row
+          textarea(name='at', cols='30', rows='10')
+      h3 二、请您对物业管理服务工作做出评价
+      +form-group-list(data[1], 'b')
+      h3 三、请您对学生公寓管理服务工作做出评价
+      +form-group-list(data[2], 'c')
+      h3 四、请你对水电与维修管理服务工作做出评价
+      +form-group-list(data[3], 'd')
+      h3 五、请您对交通管理服务工作做出评价
+      +form-group-list(data[4], 'e')
 
       .form-group.row
         .col-xs-3.form-control-static
