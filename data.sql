@@ -17,17 +17,43 @@ INSERT INTO "sqlite_sequence" ("name", "seq") VALUES ('vote',	'4');
 DROP TABLE IF EXISTS "vote";
 CREATE TABLE "vote" (
   "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-  "f0" integer NOT NULL,
-  "f1" integer NOT NULL,
-  "f2" integer NOT NULL,
-  "f3" integer NOT NULL,
-  "f4" integer NOT NULL,
-  "f5" integer NOT NULL,
-  "f6" integer NOT NULL,
-  "f7" integer NOT NULL,
-  "f8" integer NOT NULL,
-  "f9" integer NOT NULL,
-  "f10" integer NOT NULL,
+
+  "a0" integer NOT NULL,
+  "a1" integer NOT NULL,
+  "a2" integer NOT NULL,
+  "a3" integer NOT NULL,
+  "a4" integer NOT NULL,
+  "a5" integer NOT NULL,
+  "at" text(500) NOT NULL,
+
+  "b0" integer NOT NULL,
+  "b1" integer NOT NULL,
+  "b2" integer NOT NULL,
+  "b3" integer NOT NULL,
+  "b4" integer NOT NULL,
+  "bt" text(500) NOT NULL,
+
+  "c0" integer NOT NULL,
+  "c1" integer NOT NULL,
+  "c2" integer NOT NULL,
+  "c3" integer NOT NULL,
+  "c4" integer NOT NULL,
+  "ct" text(500) NOT NULL,
+
+  "d0" integer NOT NULL,
+  "d1" integer NOT NULL,
+  "d2" integer NOT NULL,
+  "d3" integer NOT NULL,
+  "d4" integer NOT NULL,
+  "dt" text(500) NOT NULL,
+
+  "e0" integer NOT NULL,
+  "e1" integer NOT NULL,
+  "e2" integer NOT NULL,
+  "e3" integer NOT NULL,
+  "e4" integer NOT NULL,
+  "et" text(500) NOT NULL,
+
   "ip" text NULL,
   "time" integer NOT NULL
 );
