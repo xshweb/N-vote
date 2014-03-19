@@ -1,6 +1,6 @@
 var settings = {
   title      : "广西民族大学首届随手拍大赛 网上投票",
-  host       : 'http://localhost:3000/',
+  host       : 'http://localhost:3000',
   prefix     : 'pic-vote',
   port       : process.env.NODE_PORT || 3000,
   init: function(app){
