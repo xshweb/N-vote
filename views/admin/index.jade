@@ -49,25 +49,26 @@ block body
         td(colspan=10)
           strong 五、请您对交通管理服务工作做出评价
       +vote_trs('e')
-    table
+
+    table.table
       tr
-        th 您对饮食管理服务还有何意见及建议
+        th 一、您对饮食管理服务还有何意见及建议
       tr(ng-repeat='at in vote_ats track by $index')
         td {{at}}
       tr
-        th 您对教室管理服务还有何意见及建议
+        th 二、您对教室管理服务还有何意见及建议
       tr(ng-repeat='bt in vote_bts track by $index')
         td {{bt}}
       tr
-        th 您对学生公寓管理服务还有何意见及建议
+        th 三、您对学生公寓管理服务还有何意见及建议
       tr(ng-repeat='ct in vote_cts track by $index')
         td {{ct}}
       tr
-        th 您对水电服务工作还有何意见及建议
+        th 四、您对水电服务工作还有何意见及建议
       tr(ng-repeat='dt in vote_dts track by $index')
         td {{dt}}
       tr
-        th 您对交通管理服务工作还有何意见及建议
+        th 五、您对交通管理服务工作还有何意见及建议
       tr(ng-repeat='et in vote_ets track by $index')
         td {{et}}
   script.
