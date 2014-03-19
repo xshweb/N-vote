@@ -1,44 +1,119 @@
 extends layout
 
-block body
-  table.table.imgs-table(ng-controller='show_vote')
+mixin vote_trs(num)
+  each da,i in data[num.charCodeAt() - 'a'.charCodeAt()]
     tr
-      th ID
-      th 问题
-      th A
-      th 票数
-      th B
-      th 票数
-      th C
-      th 票数
-      th D
-      th 票数
-    each da,i in data
+      td= i+1
+      td= da.title
+      td= da.radios[0]
+      td {{votes['#{num}'][#{i}][0]}}
+      td= da.radios[1]
+      td {{votes['#{num}'][#{i}][1]}}
+      td= da.radios[2]
+      td {{votes['#{num}'][#{i}][2]}}
+      td= da.radios[3]
+      td {{votes['#{num}'][#{i}][3]}}
+
+
+block body
+  div(ng-controller='show_vote')
+    table.table.imgs-table
       tr
-        td= i+1
-        td= da.title
-        td= da.radios[0]
-        td {{votes[#{i}][0]}}
-        td= da.radios[1]
-        td {{votes[#{i}][1]}}
-        td= da.radios[2]
-        td {{votes[#{i}][2]}}
-        td= da.radios[3]
-        td {{votes[#{i}][3]}}
+        th ID
+        th 问题
+        th A
+        th 票数
+        th B
+        th 票数
+        th C
+        th 票数
+        th D
+        th 票数
+      tr
+        td(colspan=10)
+          strong 一、请您对饮食管理服务工作做出评价
+      +vote_trs('a')
+      tr
+        td(colspan=10)
+          strong 二、请您对物业管理服务工作做出评价
+      +vote_trs('b')
+      tr
+        td(colspan=10)
+          strong 三、请您对学生公寓管理服务工作做出评价
+      +vote_trs('c')
+      tr
+        td(colspan=10)
+          strong 四、请你对水电与维修管理服务工作做出评价
+      +vote_trs('d')
+      tr
+        td(colspan=10)
+          strong 五、请您对交通管理服务工作做出评价
+      +vote_trs('e')
+    table
+      tr
+        th 您对饮食管理服务还有何意见及建议
+      tr(ng-repeat='at in vote_ats track by $index')
+        td {{at}}
+      tr
+        th 您对教室管理服务还有何意见及建议
+      tr(ng-repeat='bt in vote_bts track by $index')
+        td {{bt}}
+      tr
+        th 您对学生公寓管理服务还有何意见及建议
+      tr(ng-repeat='ct in vote_cts track by $index')
+        td {{ct}}
+      tr
+        th 您对水电服务工作还有何意见及建议
+      tr(ng-repeat='dt in vote_dts track by $index')
+        td {{dt}}
+      tr
+        th 您对交通管理服务工作还有何意见及建议
+      tr(ng-repeat='et in vote_ets track by $index')
+        td {{et}}
   script.
     var votes = !{JSON.stringify(votes)};
+    console.log(votes);
     function show_vote($scope) {
-      $scope.votes = new Array(11);
+      $scope.votes = {};
+      $scope.vote_ats = [];
+      $scope.vote_bts = [];
+      $scope.vote_cts = [];
+      $scope.vote_dts = [];
+      $scope.vote_ets = [];
       var i, j;
-      for (i=0; i < 11; ++i) {
-        $scope.votes[i] = new Array(4);
+      // a 的 radio
+      $scope.votes['a'] = new Array(6);
+      for (i=0; i < 6; ++i) {
+        $scope.votes['a'][i] = new Array(4);
         for (j=0; j < 4; ++j) {
-          $scope.votes[i][j] = 0;
+          $scope.votes['a'][i][j] = 0;
         }
       }
-      for (i=0; i < votes.length; ++i) {
-        for (j=0; j < 11; ++j) {
-          $scope.votes[j][votes[i]['f'+j]]++;
+      // b-e 的 radio
+      'bcde'.split('').forEach(function(k){
+        $scope.votes[k] = new Array(5);
+        for (i=0; i < 5; ++i) {
+          $scope.votes[k][i] = new Array(4);
+          for (j=0; j < 4; ++j) {
+            $scope.votes[k][i][j] = 0;
+          }
         }
+      });
+      // 从 votes josn 统计到 $scope
+      for (i=0; i < votes.length; ++i) {
+        for (j=0; j < 6; ++j) {
+          $scope.votes['a'][j][votes[i]['a'+j]]++;
+        }
+        if (votes[i]['at'] !== '') {
+          $scope.vote_ats.push(votes[i]['at']);
+        }
+        'bcde'.split('').forEach(function(k){
+          for (j=0; j < 5; ++j) {
+            $scope.votes[k][j][votes[i][k+j]]++;
+          }
+          if (votes[i][k+'t'] !== '') {
+            $scope['vote_'+k+'ts'].push(votes[i][k+'t']);
+          }
+        });
       }
     }
