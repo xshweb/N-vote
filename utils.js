@@ -6,8 +6,7 @@ var path = require('path');
 var utils = {
   path: function(){
     var args = Array.prototype.slice.call(arguments);
-    var app_root = path.dirname(require.main.filename);
-    args.unshift(app_root);
+    args.unshift(process.cwd());
     return path.join.apply(Function, args);
   },
   controllers: function(name){
