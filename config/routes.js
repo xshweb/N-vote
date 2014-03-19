@@ -7,6 +7,7 @@ require('express-namespace');
 module.exports = function (app) {
   app.set("trust proxy", true);
   var prefix = settings.prefix;
+
   /* add jump method to res. redirect to real address. */
   app.use(function (req, res, next) {
     res.jump = function(/* status ,*/ url){
@@ -19,8 +20,9 @@ module.exports = function (app) {
     };
     next();
   });
+
   // set static directory
-  app.use('/'+prefix, express.static(settings.path.public));
+  app.use('/'+prefix, express.static(utils.path('public')));
 
   app.namespace('/'+prefix, function(){
     app.get('/', controllers('index'));
