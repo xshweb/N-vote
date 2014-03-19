@@ -19,7 +19,7 @@ module.exports.start = function(){
     },
     secret: 'W9ERT480F9Qp526Y1dsf3',
     store: new FileSessionStore({
-      path: 'data/session'
+      path: utils.path('data/session')
     })
   }));
 
