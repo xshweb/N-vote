@@ -1,11 +1,6 @@
 var settings = {
-<<<<<<< HEAD
   title      : "2013年－－2014年广西民族大学新闻摄影大赛",
-  host       : 'http://localhost:3000/',
-=======
-  title      : "随手拍网上投票",
   host       : 'http://localhost:3000',
->>>>>>> core
   prefix     : 'pic-vote',
   port       : process.env.NODE_PORT || 3000,
   init: function(app){
