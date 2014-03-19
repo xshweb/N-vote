@@ -8,11 +8,9 @@ CREATE TABLE "admin" (
 INSERT INTO "admin" ("id", "usr", "pwd") VALUES (1,	'admin',	'202cb962ac59075b964b07152d234b70');
 
 -- DROP TABLE IF EXISTS "sqlite_sequence";
-CREATE TABLE sqlite_sequence(name,seq);
-
+-- CREATE TABLE sqlite_sequence(name,seq);
 INSERT INTO "sqlite_sequence" ("name", "seq") VALUES ('admin',	'1');
-INSERT INTO "sqlite_sequence" ("name", "seq") VALUES ('admin',	'1');
-INSERT INTO "sqlite_sequence" ("name", "seq") VALUES ('vote',	'4');
+INSERT INTO "sqlite_sequence" ("name", "seq") VALUES ('vote',	'1');
 
 DROP TABLE IF EXISTS "vote";
 CREATE TABLE "vote" (
