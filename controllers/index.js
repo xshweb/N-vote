@@ -40,7 +40,7 @@ var handle = {
     var self = this;
     if (id) {
       this.voteNum(req, function(count){
-        if (count < 10) {
+        if (count < 2) {
           req.models.vote.create([{
             stu_id: '', // XXX
             imgs_id: id,
