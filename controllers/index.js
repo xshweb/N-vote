@@ -1,8 +1,7 @@
 var handle = {
   isVote: function(req){
-    // TODO
-    // return req.cookies.is_vote === 1 ||
-      // req.session.is_vote === 1;
+    return req.cookies.is_textvote2_vote_325 === 1 ||
+      req.session.is_textvote2_vote_325 === 1;
   },
   vote: function(req, res){
     var v = {}, i, error = [];
@@ -10,8 +9,7 @@ var handle = {
       if (req.param('a'+i)) {
         v['a'+i] = parseInt(req.param('a'+i));
       } else {
-        error.push('a'+i);
-        // return error('第'+(i+1)+'个选项未填写');
+        error.push('第'+('a.'+i)+'个选项未填写');
       }
     }
     'bcde'.split('').forEach(function(e){
@@ -19,8 +17,7 @@ var handle = {
         if (req.param(e+i)) {
           v[e+i] = parseInt(req.param(e+i));
         } else {
-          error.push(e+i);
-          // return error('第'+(i+1)+'个选项未填写');
+          error.push('第'+(e+'.'+i)+'个选项未填写');
         }
       }
     });
@@ -34,6 +31,8 @@ var handle = {
       v.time = (new Date()).getTime();
       req.models.vote.create([v], function(err, items){
         if (!err) {
+          req.session.is_textvote2_vote_325 = 1;
+          res.cookie('is_textvote2_vote_325', 1);
           res.jump('success');
         } else {
           console.log(err); // XXX
@@ -53,9 +52,13 @@ var handle = {
 
 module.exports = {
   index: function(req, res) {
-    res.render('index/index', {
+    var datas = {
       data: require('./index/data.js')
-    });
+    };
+    if (handle.isVote(req)) {
+      datas.error = "您已投票";
+    }
+    res.render('index/index', datas);
   },
   index_post: function(req, res){
     var error = function(info){
@@ -66,6 +69,8 @@ module.exports = {
     };
     if (!handle.is_verifycode(req)) {
       return error('验证码错误');
+    } else if (handle.isVote(req)) {
+      return error('您已投票'); // XXX use jump please
     } else {
       handle.vote(req, res);
     }
