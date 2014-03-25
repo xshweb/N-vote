@@ -45,7 +45,7 @@ module.exports = {
     //   return error('验证码错误');
     // }
     if (handle.isVote(req)) {
-      error("您已投票");
+      error("您已投票"); // XXX jump
     } else {
       var err;
       if (err = handle.vote(req,res)) {
