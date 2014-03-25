@@ -67,9 +67,10 @@ module.exports = {
         error: info
       });
     };
-    if (!handle.is_verifycode(req)) {
-      return error('验证码错误');
-    } else if (handle.isVote(req)) {
+    // if (!handle.is_verifycode(req)) {
+      // return error('验证码错误');
+    // } else
+    if (handle.isVote(req)) {
       return error('您已投票'); // XXX use jump please
     } else {
       handle.vote(req, res);
