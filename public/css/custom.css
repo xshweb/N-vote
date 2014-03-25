@@ -113,3 +113,6 @@ div.imgs-infinite div.wrap-box .img-box:hover span.img-label {
 form {
   max-width: 500px;
 }
+.alert-success.info p {
+  text-indent: 2em;
+}
