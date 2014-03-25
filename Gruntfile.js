@@ -46,15 +46,25 @@ module.exports = function(grunt){
         files: ['src_public/js/*.js'],
         tasks: ['uglify'],
       }
-    }
+    },
+    concurrent: {
+      dev: [
+        'nodemon:dev',
+        'watch'
+      ],
+      options: {
+        logConcurrentOutput: true
+      }
+    },
   });
 
   // plugin
+  grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-nodemon');
 
   // 默认任务
-  grunt.registerTask('default', ['nodemon']);
+  grunt.registerTask('default', ['concurrent:dev']);
 };
