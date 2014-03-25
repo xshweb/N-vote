@@ -1,11 +1,9 @@
 var handle = {
   isVote: function(req){
-    // TODO
     return req.cookies.is_textvote_vote_326 === 1 ||
       req.session.is_textvote_vote_326 === 1;
   },
   vote: function(req, res){
-    // XXX move to handle
     var v = {};
     for (var i=0; i < 11; ++i) {
       if (req.param('f'+i)) {
