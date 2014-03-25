@@ -1,8 +1,8 @@
 var handle = {
   isVote: function(req){
     // TODO
-    // return req.cookies.is_vote === 1 ||
-      // req.session.is_vote === 1;
+    return req.cookies.is_textvote_vote_326 === 1 ||
+      req.session.is_textvote_vote_326 === 1;
   },
   vote: function(req, res){
     // XXX move to handle
@@ -18,6 +18,8 @@ var handle = {
     v.time = (new Date()).getTime();
     req.models.vote.create([v], function(err, items){
       if (!err) {
+        req.session.is_textvote_vote_326 = 1;
+        res.cookie('is_textvote_vote_326', 1);
         res.jump('success');
       }
     });
@@ -30,7 +32,8 @@ var handle = {
 module.exports = {
   index: function(req, res) {
     res.render('index/index', {
-      data: require('./index/data.js')
+      data: require('./index/data.js'),
+      error: handle.isVote(req) ? "您已投票" : null
     });
   },
   index_post: function(req, res){
@@ -40,8 +43,11 @@ module.exports = {
         error: info
       });
     };
-    if (!handle.is_verifycode(req)) {
-      return error('验证码错误');
+    // if (!handle.is_verifycode(req)) {
+    //   return error('验证码错误');
+    // }
+    if (handle.isVote(req)) {
+      error("您已投票");
     } else {
       var err;
       if (err = handle.vote(req,res)) {
