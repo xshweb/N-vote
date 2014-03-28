@@ -49,13 +49,13 @@ var handle = {
           }], function(err, items){
             if (!err) {
               // self.voteAdd(req, res);
-              res.json(9 - count);
+              res.json(1 - count);
             } else {
               res.json(0);
             }
           });
         } else {
-          res.json(0);
+          res.json(-1);
         }
       });
     } else {
